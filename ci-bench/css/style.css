@@ -1,0 +1,71 @@
+/* Custom Utilities & Glassmorphism */
+.glass {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Author Links Hover Effect */
+.author-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #3b82f6;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.author-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Leaderboard Table Hover Styles */
+tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+tbody tr:hover {
+    background-color: rgba(31, 41, 55, 0.8);
+    transform: translateY(-1px);
+}
+
+/* Image comparison grid fade in */
+.comparison-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation delays for grid items */
+.comparison-card:nth-child(1) { animation-delay: 0.1s; }
+.comparison-card:nth-child(2) { animation-delay: 0.2s; }
+.comparison-card:nth-child(3) { animation-delay: 0.3s; }
+.comparison-card:nth-child(4) { animation-delay: 0.4s; }
+.comparison-card:nth-child(5) { animation-delay: 0.5s; }
+.comparison-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Custom Scrollbar for table */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #111827; 
+}
+::-webkit-scrollbar-thumb {
+    background: #374151; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4b5563; 
+}

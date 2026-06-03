@@ -1,0 +1,179 @@
+[
+  {
+    "task": "deconv_motion_blur",
+    "label": "GOPR0857_11_00__000043",
+    "protocols": {
+      "P1": {
+        "gt_url": "assets/samples/deconv_motion_blur_gt_GOPR0857_11_00__000043.png",
+        "input_url": "assets/samples/deconv_motion_blur_input_GOPR0857_11_00__000043.png",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/deconv_motion_blur_P1_gemini_GOPR0857_11_00__000043_nanobanana_0.png",
+            "score": 60.63
+          },
+          "openai": {
+            "url": "assets/samples/deconv_motion_blur_P1_openai_GOPR0857_11_00__000043_openai_0.png",
+            "score": 30.84
+          },
+          "qwen": {
+            "url": "assets/samples/deconv_motion_blur_P1_qwen_GOPR0857_11_00__000043.png",
+            "score": 43.99
+          }
+        },
+        "prompt": "Task: Remove the motion blur from this image. Deconvolve the blur kernel introduced by camera or subject motion to recover a sharp, clear image.\nInput: An image with camera or object motion blur.\n\nConstraints:\n- Directional Deblurring: Accurately invert the directional smearing caused by the motion trajectory. Restore crisp edges and fine details that were smeared along the axis of movement.\n- Artifact Suppression: Avoid introducing ringing artifacts, haloing, or artificial noise amplification, which are common errors when aggressively deconvolving motion blur.\n- Spatial Consistency: Differentiate between global camera shake (affecting the entire frame) and localized subject motion (affecting only specific objects). Ensure static background elements remain natural and untouched if only the subject is blurred.\n- Zero Hallucination: Do not invent or hallucinate high-frequency textures (like text, facial features, or intricate patterns) that were completely destroyed by the motion smear. Only restore mathematically recoverable structures.\n\nOutput: A sharp, well-focused, and artifact-free image where the original motion smear has been completely neutralized."
+      },
+      "P2": {
+        "gt_url": "assets/samples/deconv_motion_blur_gt_GOPR0857_11_00__000043.png",
+        "input_url": "assets/samples/deconv_motion_blur_input_GOPR0857_11_00__000043.png",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/deconv_motion_blur_P2_gemini_GOPR0857_11_00__000043_nanobanana_0.png",
+            "score": 58.74
+          },
+          "openai": {
+            "url": "assets/samples/deconv_motion_blur_P2_openai_GOPR0857_11_00__000043_openai_0.png",
+            "score": 33.43
+          },
+          "qwen": {
+            "url": "assets/samples/deconv_motion_blur_P2_qwen_GOPR0857_11_00__000043.png",
+            "score": 42.09
+          }
+        },
+        "planner_prompt": "You are an expert computational imaging assistant. Your task is to analyze an image degraded by motion blur (characterized by directional smearing and ghosting) and write a highly specific \"execution prompt\" for a downstream image restoration model.\nInput: An image with camera or object motion blur.\n\nStep 1: Analyze the Degradation\nExamine the image to identify the nature of the motion blur. Determine the primary direction (angle) and magnitude (length) of the blur smear. Identify whether the blur is caused by global camera shake (affecting everything) or localized subject motion (affecting only a specific object while the background is sharp).\n\nStep 2: Generate the Execution Prompt\nWrite a 4-6 sentence instruction for the image editing model. Use highly descriptive and restrictive keywords. Your generated prompt MUST include:\n- Explicit identification of the degradation as motion blur, specifying whether it is global camera shake or localized subject motion.\n- Specific identification of the blur's directionality and the critical regions that need targeted deconvolution (e.g., \"Remove the horizontal motion smear from the passing car while preserving the already-sharp background\").\n- Strict negative constraints forbidding the model from adding artificial ringing artifacts, over-sharpening noise, or hallucinating lost structural details like text.\n\nGoal: Your generated prompt should act as a perfect algorithmic blueprint, guiding the restoration model to optically invert the specific motion kernel and restore structural sharpness without introducing deconvolution artifacts.",
+        "prompts": {
+          "gemini": "**Step 1: Degradation Analysis**\nThe image suffers from global camera shake motion blur, affecting all elements equally. The blur exhibits a mild diagonal smear, obscuring the sharp edges of the brick steps, the dry leaf, and the background foliage. \n\n**Step 2: Execution Prompt**\nEliminate the global camera shake motion blur degrading the entire image frame. Precisely deconvolve the diagonal blur kernel targeting the brick stair edges and the dry leaf to restore structural sharpness. Strictly do not introduce ringing artifacts, over-sharpen background noise, or hallucinate lost structural details in the foliage.",
+          "openai": "Execution prompt:\nThe image suffers from global camera\u2011shake motion blur affecting the entire frame. The smear is predominantly horizontal (approximately 0\u20135\u00b0 from the x\u2011axis) with a length of about 8\u201312 pixels, evident as left\u2011right ghosting on the stair treads/riser edges and brick joints, as well as the pavilion/building edges in the background. Perform directional deconvolution using a linear motion PSF aligned to this angle and length, prioritizing recovery of crisp edges on the foreground steps and the upper terrace while keeping foliage and structural boundaries natural. Do not introduce ringing halos, double edges, or oversharpened noise, and do not hallucinate fine brick patterns or any nonexistent text. Maintain true geometry, color balance, and perspective during restoration.",
+          "qwen": "The image is degraded by severe global horizontal motion blur, characterized by uniform directional smearing across the brick stairs, foreground foliage, and background building. Apply a targeted deconvolution process to reverse the horizontal kernel, specifically sharpening the mortar lines and rectangular shapes of the red bricks on the stair treads. Ensure the restoration resolves the edges of the trees and the dark structure in the background without introducing ringing artifacts or artificial halos. Strictly forbid over-sharpening of the noise in the shadowed regions of the stairs and do not hallucinate structural details in the background windows. The goal is a clean inversion of the motion blur that preserves the natural texture of the pavement and leaves."
+        }
+      }
+    }
+  },
+  {
+    "task": "demosaicking_regular",
+    "label": "a5000-kme_0204",
+    "protocols": {
+      "P1": {
+        "gt_url": "assets/samples/demosaicking_regular_gt_a5000-kme_0204.jpg",
+        "input_url": "assets/samples/demosaicking_regular_input_a5000-kme_0204.png",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/demosaicking_regular_P1_gemini_a5000-kme_0204_nanobanana_0.png",
+            "score": 56.29
+          },
+          "openai": {
+            "url": "assets/samples/demosaicking_regular_P1_openai_a5000-kme_0204_openai_0.png",
+            "score": 36.01
+          },
+          "qwen": {
+            "url": "assets/samples/demosaicking_regular_P1_qwen_a5000-kme_0204.png",
+            "score": 19.86
+          }
+        },
+        "prompt": "Task: Demosaic this regular RGGB Bayer pattern image. Reconstruct the full-color RGB image from the raw sensor mosaic.\nInput: A regular Bayer mosaic image.\n\nSensor Layout: The repeating 2x2 Bayer tile is:\n\n  R G\n  G B\n\nConstraints:\n- Color fidelity: Reconstruct missing channels while preserving natural color relationships and avoiding false-color artifacts.\n- Edge-aware interpolation: Keep high-contrast edges sharp and suppress zippering or moire artifacts on fine repetitive textures.\n- Detail preservation: Recover fine spatial detail without excessive smoothing or synthetic over-sharpening.\n- Zero hallucination: Do not invent structures or textures not supported by the sampled mosaic.\n\nOutput: A clean, full-color RGB image faithfully reconstructed from the regular RGGB Bayer input."
+      },
+      "P2": {
+        "gt_url": "assets/samples/demosaicking_regular_gt_a5000-kme_0204.jpg",
+        "input_url": "assets/samples/demosaicking_regular_input_a5000-kme_0204.png",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/demosaicking_regular_P2_gemini_a5000-kme_0204_nanobanana_0.png",
+            "score": 56.45
+          },
+          "openai": {
+            "url": "assets/samples/demosaicking_regular_P2_openai_a5000-kme_0204_openai_0.png",
+            "score": 38.58
+          },
+          "qwen": {
+            "url": "assets/samples/demosaicking_regular_P2_qwen_a5000-kme_0204.png",
+            "score": 21.34
+          }
+        },
+        "planner_prompt": "You are an expert computational imaging assistant. Your task is to analyze a raw sensor image captured with a regular 2x2 RGGB Bayer color filter array (CFA) and write a highly specific \"execution prompt\" for a downstream demosaicking model.\nInput: A regular Bayer mosaic image.\n\nThe sensor's repeating 2x2 tile is:\n\n  R G\n  G B\n\nStep 1: Analyze the Image\nScan the mosaiced input and identify high-frequency edges, thin structures, and repetitive textures that are most vulnerable to zippering, moire, and false-color artifacts during interpolation.\n\nStep 2: Generate the Execution Prompt\nWrite a 4-6 sentence instruction for the image model. Use highly descriptive and restrictive keywords. Your generated prompt MUST include:\n- Explicit identification that the input is a regular 2x2 RGGB Bayer mosaic.\n- Specific guidance for edge-aware reconstruction in regions prone to color artifacts.\n- Strict negative constraints forbidding edge blur, false colors, and hallucinated textures.\n\nGoal: Your generated prompt should act as a precise demosaicking blueprint that recovers accurate RGB detail from the regular Bayer sampling pattern.",
+        "prompts": {
+          "gemini": "This is a regular 2x2 RGGB Bayer mosaic raw sensor image. Execute a high-fidelity demosaicking algorithm to recover a full-color RGB image. Pay special attention to the fine, overlapping branches and dense clusters of blossoms on the large central tree, as these high-frequency areas are highly susceptible to zippering and moir\u00e9 patterns. Employ directional interpolation techniques to reconstruct the sharp transitions of the tree trunk and the delicate textures of the grass in the foreground without introducing false colors or color bleeding. Strictly avoid blurring fine details in the distant bare trees or the figure on the left, and ensure no hallucinated textures are created during the color reconstruction process. Maintain crisp edges and accurate chromaticity throughout the image.",
+          "openai": "Step 1 \u2013 Image analysis:\n- The scene contains many high-frequency, repetitive textures: dense clusters of small blossoms and thin branches on the large tree, fine grass blades, and small details on the person and dog.  \n- Strong luminance edges appear at the canopy/sky boundary, around individual branches, and on silhouettes of the person and dog.  \n- Smooth, low-texture regions include the open sky and shadowed lawn areas, which need noise-aware, artifact-free reconstruction without ringing.\n\nExecution prompt for demosaicking:\n- Input is a regular 2x2 RGGB Bayer mosaic (tile: R G / G B). Perform edge-aware interpolation using the green channel as the luminance guide and reconstruct red/blue chroma with directional gradients that follow local edge orientation, especially along thin branches, blossom clusters, grass blades, and subject silhouettes.  \n- Enforce cross-channel consistency by preserving color ratios across edges; suppress moire and zippering in the repetitive blossom texture and grass using anisotropic, gradient-aligned filtering.  \n- In low-variation areas (sky, smooth lawn), use noise-aware smoothing with conservative chroma to avoid banding while keeping luminance flat.  \n- Strict constraints: no edge blur, no false colors (e.g., along branches against sky), no stair-stepping/zippering on diagonals, and absolutely no hallucinated textures or detail amplification beyond what the mosaic supports.",
+          "qwen": "The input is a raw sensor image captured with a regular 2x2 RGGB Bayer color filter array requiring precise interpolation to recover the full RGB resolution. You must perform edge-aware interpolation, paying special attention to the high-frequency details of the central flowering tree to prevent zippering artifacts along the complex branch structures. Reconstruct the sharp boundaries of the figure and animal in the lower-left quadrant without blurring the transition against the grassy foreground. Strictly forbid the generation of false colors in the sky or dark foliage, and do not hallucinate textures in the uniform grassy areas. The final result must be a high-fidelity RGB image with the original spatial sampling pattern completely resolved and artifacts eliminated."
+        }
+      }
+    }
+  },
+  {
+    "task": "event",
+    "label": "10_32",
+    "protocols": {
+      "P1": {
+        "gt_url": "assets/samples/event_gt_10_32.png",
+        "input_url": "assets/samples/event_input_10_32.png",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/event_P1_gemini_10_32_nanobanana_0.png",
+            "score": 27.36
+          },
+          "openai": {
+            "url": "assets/samples/event_P1_openai_10_32_openai_0.png",
+            "score": 22.87
+          },
+          "qwen": {
+            "url": "assets/samples/event_P1_qwen_10_32.png",
+            "score": 6.17
+          }
+        },
+        "prompt": "Task: Reconstruct an intensity image from a single event representation.\nInput: One event image `10_32.png`, whose filename suffix indicates temporal accumulation scale (`*_16.png`, `*_32.png`, or `*_full.png`).\nSuffix interpretation: `_16` = short accumulation window, `_32` = medium accumulation window, `_full` = full accumulation window.\nFor this sample, use accumulation scale `32`.\n\nEvent encoding note:\n- The event image is accumulated from events `(x, y, t, p)` over the selected window.\n- Polarity `p=1` (ON) means local brightness increased; `p=0` (OFF) means local brightness decreased.\n- Per pixel, ON contributes `+1` and OFF contributes `-1`, then values are rendered around a neutral gray baseline `128`.\n- Pixels above `128` indicate ON-dominant activity; pixels below `128` indicate OFF-dominant activity.\n- This input encodes brightness change dynamics, not absolute scene intensity.\n\nConstraints:\n- Scale awareness: Respect the input accumulation scale (16, 32, or full) and reconstruct the corresponding intensity frame for that same scale.\n- Edge and texture fidelity: Preserve fine contours and high-frequency details while suppressing event noise and sparsity artifacts.\n- Photometric plausibility: Produce a natural-looking intensity image without artificial over-sharpening, checkerboard artifacts, or contrast exaggeration.\n- Zero hallucination: Do not invent objects or scene structures not supported by the provided event input.\n\nOutput: A clean, structurally accurate intensity image reconstructed from the provided event input."
+      },
+      "P2": {
+        "gt_url": "assets/samples/event_gt_10_32.png",
+        "input_url": "assets/samples/event_input_10_32.png",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/event_P2_gemini_10_32_nanobanana_0.png",
+            "score": 18.84
+          },
+          "openai": {
+            "url": "assets/samples/event_P2_openai_10_32_openai_0.png",
+            "score": 6.95
+          },
+          "qwen": {
+            "url": "assets/samples/event_P2_qwen_10_32.png",
+            "score": 3.81
+          }
+        },
+        "planner_prompt": "You are an expert computational imaging assistant. Your task is to analyze a single event representation and write a highly specific \"execution prompt\" for a downstream event-to-image reconstruction model.\nInput: One event image `10_16.png` with suffix `*_16`, `*_32`, or `*_full` indicating temporal accumulation scale.\nSuffix interpretation: `_16` = short accumulation window, `_32` = medium accumulation window, `_full` = full accumulation window.\nFor this sample, the scale is `16`.\n\nEvent encoding note:\n- The input is built from events `(x, y, t, p)` accumulated over the selected window.\n- `p=1` (ON) indicates local brightening; `p=0` (OFF) indicates local darkening.\n- ON/OFF events are summed as signed counts per pixel (`+1` / `-1`) and rendered around baseline gray `128`.\n- Values above/below `128` represent ON-dominant/OFF-dominant change respectively.\n- The representation encodes temporal brightness change, not direct intensity.\n\nStep 1: Analyze the Event Evidence\nUse the provided suffix-derived scale `16`, then inspect reliable edges, motion traces, and regions where sparse events may cause missing texture.\n\nStep 2: Generate the Execution Prompt\nWrite a 4-6 sentence instruction for the image model. Use highly descriptive and restrictive keywords. Your generated prompt MUST include:\n- Explicit instruction to reconstruct the intensity image corresponding to the same input accumulation scale.\n- Specific guidance on preserving sharp boundaries and recovering plausible texture from sparse event evidence.\n- Strict negative constraints forbidding ghosting, over-smoothed surfaces, and hallucinated scene content.\n\nGoal: Your generated prompt should act as a robust reconstruction blueprint that turns a single event accumulation image into a faithful intensity reconstruction.",
+        "prompts": {
+          "gemini": "**Execution Prompt:**\n\nReconstruct a grayscale intensity image corresponding to this medium accumulation window event input. Extract and sharpen the faint rectangular geometric object with parallel lines in the lower left and the curved structures above it. Recover plausible surface textures from this highly noisy, sparse data while preserving distinct, sharp object boundaries. Strictly prohibit motion ghosting, over-smoothed surfaces, and the hallucination of scene content unsupported by the raw event traces.",
+          "openai": "Reconstruct the intensity image that corresponds exactly to the same medium temporal accumulation scale (32) as the provided event frame. Use the signed event evidence: lighten regions with ON-dominant counts, darken regions with OFF-dominant counts, and keep areas with little or no events near neutral mid-gray. Preserve sharp boundaries and continuous contours, particularly along the prominent oval/circular edge in the upper center and the rectangular slab/stripe in the lower center, removing speckle while avoiding blur of these edges. Recover plausible surface texture only where event density supports it using edge-aware, anisotropic smoothing; in sparsely populated zones, fill with low-contrast gradients without inventing fine patterns. Strictly avoid ghosting, double edges, halos, over-smoothed plastic surfaces, or any hallucinated objects or scene content not supported by the events.",
+          "qwen": "Reconstruct the intensity image corresponding to the medium accumulation scale (32), treating the input grain as a distribution of local brightness changes where darker pixels indicate dominant OFF events. Focus on recovering the sharp, high-contrast edges of the geometric structures visible at the bottom and the curved element in the top right, ensuring these features remain distinct and not blurred by the surrounding noise. Convert the stochastic event density into plausible, continuous surface textures for the identified objects while preserving the neutral gray background where no significant change occurred. Strictly forbid the introduction of ghosting artifacts or temporal smearing, as this is a single accumulation snapshot. Do not hallucinate details in low-signal areas; maintain the structural integrity of the scene based solely on the provided event density."
+        }
+      }
+    }
+  },
+  {
+    "task": "denoising",
+    "label": "0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00",
+    "protocols": {
+      "P3": {
+        "gt_url": "assets/samples/denoising_gt_0068_003_IP_00200_00400_3200_N__NOISY_SRGB_010__crop00.PNG",
+        "input_url": "assets/samples/denoising_input_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00.PNG",
+        "models": {
+          "gemini": {
+            "url": "assets/samples/denoising_P3_gemini_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00_nanobanana_0.png",
+            "score": 50.99
+          },
+          "openai": {
+            "url": "assets/samples/denoising_P3_openai_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00_openai_0.png",
+            "score": 35.07
+          },
+          "qwen": {
+            "url": "assets/samples/denoising_P3_qwen_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00.png",
+            "score": 42.57
+          }
+        },
+        "planner_prompt": "You are an expert in computational imaging, working on the image formation model for compressive sensing.\nInput: one clean smartphone image.\nPer-image metadata parsed from filename:\n- scene instance: `0001`\n- scene number: `001`\n- camera: `S6` (`Samsung Galaxy S6 Edge`)\n- ISO: `00100`\n- shutter code: `00060` (approx exposure `1/60 s`)\n- illuminant temperature: `3200` K\n- brightness condition: `L` (`low light`)\n\nFirst infer and write the forward model equation, then write an execution prompt for a downstream image editor.\n\nRequired response format:\n1. `FORWARD_MODEL:`\n\t- Write a smartphone noise image-formation model with parameter discussion grounded in the provided metadata.\n\t- Explain how ISO, exposure proxy, illuminant, and brightness condition should modulate noise level/chromaticity.\n\t- Keep the model realistic for generic mobile camera noise, not synthetic artistic grain.\n2. `EXECUTION_PROMPT:`\n\t- Write a strict 4-6 sentence prompt that instructs the image editor to generate exactly one noisy image from the clean input.\n\t- Require preservation of scene geometry and color identity while injecting plausible smartphone sensor noise.\n\t- Forbid blur-based degradation, content hallucination, color cast drift unrelated to metadata, text overlays, and extra outputs.\n\nHard constraints:\n- Equation-first ordering is mandatory: `FORWARD_MODEL` must appear before `EXECUTION_PROMPT`.\n- This is forward noise synthesis (clean -> noisy), not denoising.\n- Keep padded black regions black if present.",
+        "prompts": {
+          "gemini": "**FORWARD_MODEL:**\n\nTo accurately synthesize smartphone sensor noise for compressive sensing evaluations, we model the image formation process using a heteroscedastic (signal-dependent) noise model. Let $x$ be the clean, ideal image intensity at a given pixel, and $y$ be the corresponding observed noisy pixel. The forward model is defined as:\n\n$y = x + n(x)$\nwhere $n(x) \\sim \\mathcal{N}(0, \\sigma^2(x))$ and the noise variance is defined by the affine model:\n$\\sigma^2(x) = K \\cdot x + \\sigma_{read}^2$\n\nHere, $K \\cdot x$ represents the signal-dependent photon shot noise (Poisson-distributed, approximated as Gaussian for sufficient photon counts), and $\\sigma_{read}^2$ represents the signal-independent read noise from the sensor electronics. \n\nBased on the provided metadata, the parameters should be modulated as follows:\n*   **Camera (iPhone 7) & ISO (00200):** ISO 200 on a small mobile sensor like the iPhone 7 represents a low-to-moderate sensitivity setting. The overall noise variance multipliers ($K$ and $\\sigma_{read}^2$) will be relatively small compared to high-ISO night shots, resulting in a fine, mostly high-frequency granular noise rather than large, chunky color mottling. \n*   **Exposure (1/400s) & Brightness (Normal):** A fast shutter speed of 1/400s in normal brightness indicates a well-lit scene. Consequently, midtones and highlights will have high signal-to-noise ratios (SNR), being dominated strictly by subtle shot noise, while the shadows (like the dark screen of the phone in the foreground) will reveal the baseline Gaussian read noise.\n*   **Illuminant (3200 K):** A 3200K color temperature corresponds to warm, tungsten indoor lighting. To achieve a neutral white balance, the camera's image signal processor (ISP) must significantly amplify the blue channel to compensate for the illuminant's lack of short-wavelength light. Therefore, the noise variance in the blue channel ($K_B, \\sigma_{read, B}^2$) must be visibly higher than in the red and green channels.\n\n**EXECUTION_PROMPT:**\n\nGenerate exactly one realistically noisy smartphone image from this clean input by applying a heteroscedastic noise model simulating an iPhone 7 sensor at ISO 200. Introduce fine-grained, signal-dependent Poisson-Gaussian noise, ensuring that shot noise subtly affects the midtones while read noise becomes slightly more apparent in the darker regions, such as the phone screen. Because the scene was captured under a warm 3200K illuminant, apply heavily amplified noise variance specifically to the blue color channel to mimic digital white balance compensation. Strictly preserve the underlying scene geometry, sharp edges, readable text, and overall color identity, ensuring that any pure black padded regions remain absolutely black. Do not introduce any blurring, structural hallucinations, synthetic artistic grain, unprompted color shifts, or text overlays under any circumstances.",
+          "openai": "FORWARD_MODEL:\n- Let I_clean be the input sRGB image; convert to linear RGB: I_lin = \u03b3^{-1}(I_clean). The forward smartphone formation (per pixel, per channel c \u2208 {R,G,B}) is\n  I_noisy = \u03b3( clamp( (WB \u00b7 k_e) \u2218 (I_lin \u2218 (1 + \u03b5_prnu)) + n_shot + n_read + n_dark , 0, 1 ) + n_q ),\n  where:\n  - k_e = (ISO/ISO_0) \u00b7 (t/t_0). With ISO=200 and t\u22481/400 s, using a typical mobile base ISO_0\u224825 and t_0=1/100 s, k_e indicates moderate gain but short exposure (reduced photon count).\n  - WB = diag(w_R, w_G, w_B) are white-balance channel gains set by the illuminant; for 3200 K tungsten, w_B > w_R \u2265 w_G (e.g., w_R\u22481.3, w_G\u22481.0, w_B\u22482.0), so blue-channel noise is amplified relative to red/green.\n  - \u03b5_prnu ~ N(0, \u03c3_prnu^2) is multiplicative fixed-pattern (PRNU) with \u03c3_prnu \u2248 0.003\u00b7(ISO/ISO_0) giving subtle texture; stronger at higher ISO.\n  - n_shot ~ N(0, \u03c3_shot^2(I_lin)) approximates Poisson photon noise with \u03c3_shot^2 = \u03b1 \u00b7 (WB \u00b7 k_e) \u2218 I_lin; thus brighter pixels have larger variance, but the short exposure (1/400 s) keeps absolute shot noise moderate.\n  - n_read ~ N(0, \u03c3_read^2) models electronic read noise; \u03c3_read \u2248 \u03b2\u00b7(ISO/ISO_0) with \u03b2 around 0.002\u20130.003 (blue slightly higher due to WB and CFA gain).\n  - n_dark ~ N(0, d\u00b7t) is dark-current noise; with t=1/400 s and normal brightness, it is minimal.\n  - n_q ~ U(\u22121/(2\u00b7255), 1/(2\u00b7255)) is post\u2013tone-mapping quantization noise.\n- Modulation by metadata:\n  - ISO 200: moderate analog gain increases both shot and read-noise levels; read noise scales roughly linearly with ISO.\n  - Exposure 1/400 s: short exposure reduces photon counts, so shot noise relative to signal is noticeable but not severe; dark-current negligible.\n  - Illuminant 3200 K: strong blue WB gain raises blue-channel variance and can introduce slight warm-vs-blue chromatic noise balance.\n  - Normal brightness (N): signal is not near saturation nor near black; noise should be visible but not dominant; keep padded black regions exactly black.\n\nEXECUTION_PROMPT:\n- Generate exactly one noisy version of the provided clean smartphone image, simulating an iPhone 7 at ISO 200 and 1/400 s under a 3200 K tungsten illuminant with normal brightness.\n- Linearize sRGB, add Poisson\u2013Gaussian noise where shot-noise variance is signal-dependent and scaled by exposure gain; apply channel WB gains with blue having the highest variance, red moderate, green lowest.\n- Add low\u2013moderate Gaussian read noise and subtle multiplicative PRNU (\u22480.3\u20130.5%), keep dark-current minimal due to short exposure, then reapply sRGB gamma.\n- Preserve all scene geometry and object/color identity; do not introduce blur, sharpening artifacts, content hallucination, or color cast drift beyond the tungsten WB balance.\n- Keep any padded black borders strictly black, avoid text/graphics overlays, and return a single noisy image output only.",
+          "qwen": "FORWARD_MODEL:\nThe image formation model for this smartphone capture is defined by the equation $Y = \\mathcal{C} \\left( \\eta_{shot}(X \\cdot \\mathcal{G} \\cdot t_{exp} \\cdot L_{ill}) + \\eta_{read} \\right)$, where $X$ is the clean linear scene radiance, $Y$ is the observed noisy RGB image, and $\\mathcal{C}$ represents the color space transformation and clipping. The gain factor $\\mathcal{G}$ scales with the provided ISO of 200, which is relatively low, implying minimal read noise amplification but a reliance on shot noise dominance given the normal brightness condition. The exposure time $t_{exp}$ of 1/400s acts as a photon integration window; combined with the 3200K illuminant, this dictates the signal magnitude entering the sensor, where the warm color temperature will disproportionately boost the Red channel response relative to Blue. The noise term $\\eta_{shot}$ follows a Poisson distribution proportional to the square root of the signal intensity, while $\\eta_{read}$ is a signal-independent Gaussian noise source whose variance is inversely related to the low ISO setting. The \"normal brightness\" condition ensures that the signal levels $X \\cdot \\mathcal{G} \\cdot t_{exp}$ remain within the sensor's dynamic range, preventing saturation or excessive quantization noise in the shadows.\n\nEXECUTION_PROMPT:\nGenerate a single noisy image by applying a realistic smartphone sensor noise model to the provided clean input. Simulate signal-dependent shot noise and low-level read noise consistent with an ISO 200 setting and a 1/400s exposure, ensuring the grain texture matches the fine resolution of an iPhone 7 sensor. Apply a color transformation to simulate the 3200K tungsten illuminant, introducing a subtle warm, yellowish cast that respects the original color identity of the objects. Preserve the sharpness and geometry of the scene strictly, ensuring no blur, motion artifacts, or content hallucination occurs during the noise injection process. Do not add any text overlays, watermarks, or extra outputs; the result must be a direct, noisy synthesis of the input scene."
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<img id="src" src="assets/system_figure.png" onload="convert()">
+<script>
+function convert() {
+    var canvas = document.createElement('canvas');
+    var img = document.getElementById('src');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    var data = canvas.toDataURL('image/webp', 0.5); // 0.5 for compression
+    var ta = document.createElement('textarea');
+    ta.id = 'out';
+    ta.value = data;
+    document.body.appendChild(ta);
+    document.title = "Done";
+}
+</script>
+</body>
+</html>

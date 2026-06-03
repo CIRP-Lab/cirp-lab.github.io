@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="dark overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIBench: A Systematic Benchmark of Agentic AI for Computational Imaging</title>
+    <meta name="description" content="CIBench: A Systematic Benchmark of Agentic AI for Computational Imaging Tasks. Evaluates multimodal reasoning models across ray and wave optics, ISP, inverse reconstruction, and more.">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            900: '#111827',
+                            950: '#030712'
+                        },
+                        brand: {
+                            500: '#3b82f6',
+                            600: '#2563eb'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-950 text-gray-200 font-sans antialiased selection:bg-brand-500 selection:text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 py-3 md:py-0 md:h-16 md:space-x-8 md:gap-x-0 text-sm font-medium">
+                <a href="#about" class="hover:text-brand-500 transition-colors">About</a>
+                <a href="#leaderboard" class="hover:text-brand-500 transition-colors">Leaderboard</a>
+                <a href="#samples" class="hover:text-brand-500 transition-colors">Comparisons</a>
+                <a href="#findings" class="hover:text-brand-500 transition-colors">Findings</a>
+                <a href="#citation" class="hover:text-brand-500 transition-colors">Citation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-500">
+                Does AI Understand Imaging? <br/>
+                <span class="text-lg sm:text-2xl md:text-4xl font-semibold text-brand-500">A Systematic Benchmark of Agentic AI for Computational Imaging Tasks</span>
+            </h1>
+            
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-8 text-sm sm:text-base md:text-lg font-medium text-gray-300">
+                <a href="#" class="hover:text-white transition-colors relative author-link">Ethan Chung<sup class="text-xs text-brand-500 ml-0.5">1*</sup></a>
+                <a href="#" class="hover:text-white transition-colors relative author-link">Chuanjun Zheng<sup class="text-xs text-brand-500 ml-0.5">1*</sup></a>
+                <a href="#" class="hover:text-white transition-colors">Jasper Tan<sup class="text-xs text-gray-400 ml-0.5">2</sup></a>
+                <a href="#" class="hover:text-white transition-colors">Jingxi Li<sup class="text-xs text-gray-400 ml-0.5">2</sup></a>
+                <a href="#" class="hover:text-white transition-colors">Haopeng Zhang<sup class="text-xs text-purple-400 ml-0.5">3</sup></a>
+                <a href="#" class="hover:text-white transition-colors">Huaijin Chen<sup class="text-xs text-brand-500 ml-0.5">1</sup></a>
+            </div>
+            
+            <div class="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-gray-400">
+                <span><sup class="text-brand-500 mr-1">1</sup><a href="https://hgchen.com/cirp-lab/" class="hover:text-brand-400 underline transition-colors" target="_blank">CIRP Lab</a>, University of Hawaii at Manoa</span>
+                <span><sup class="text-gray-400 mr-1">2</sup><a href="https://www.glass-imaging.com/" class="hover:text-brand-400 underline transition-colors" target="_blank">Glass Imaging</a></span>
+                <span><sup class="text-purple-400 mr-1">3</sup>University of North Carolina at Charlotte</span>
+            </div>
+            
+            <div class="mt-2 text-xs text-gray-500">
+                * Equal Contribution
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+                <a href="#" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-gray-800 hover:bg-gray-700 border border-gray-700 transition-all flex items-center gap-2 text-xs sm:text-sm font-medium">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                    Code <span class="text-[10px] sm:text-xs text-gray-400 font-normal ml-1">(Coming soon)</span>
+                </a>
+                <a href="#" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-gray-800 hover:bg-gray-700 border border-gray-700 transition-all text-white font-medium flex items-center gap-2 text-xs sm:text-sm">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Paper <span class="text-[10px] sm:text-xs text-gray-400 font-normal ml-1">(Coming soon)</span>
+                </a>
+                <a href="#" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-gray-800 hover:bg-gray-700 border border-gray-700 transition-all text-white font-medium flex items-center gap-2 text-xs sm:text-sm">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    Dataset <span class="text-[10px] sm:text-xs text-gray-400 font-normal ml-1">(Coming soon)</span>
+                </a>
+                <a href="https://drive.google.com/file/d/12zU-5bzO4kLUJg6wBE3CuHa0gxH9Tvf4/view?usp=sharing" target="_blank" class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-brand-600 hover:bg-brand-500 border border-brand-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)] text-white font-medium flex items-center gap-2 text-xs sm:text-sm">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    Supplemental Material
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Teaser -->
+    <section class="max-w-5xl mx-auto px-4 pb-20">
+        <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-800 glass p-2 mb-4">
+            <!-- To prevent missing image error if conversion failed, handle elegantly -->
+            <img src="assets/system_figure_1.webp" alt="System Figure" class="w-full h-auto rounded-xl object-contain bg-white" onerror="this.src='assets/system_figure_1.png'; this.onerror=null;">
+        </div>
+        <p class="text-gray-500 text-xs italic text-center">* Note: All benchmark results are preliminary and subject to change as evaluations scale and methodologies are refined.</p>
+    </section>
+
+    <!-- Abstract -->
+    <section id="about" class="py-16 bg-gray-900 border-y border-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6 text-center">Abstract</h2>
+            <div class="text-gray-400 leading-relaxed space-y-4 text-base md:text-lg text-left md:text-justify">
+                <p>
+                    Vision-Language Models (VLMs) and agentic AI have demonstrated impressive capabilities across semantic recognition, reasoning, and embodied decision-making tasks. However, their ability to reason about image formation, optical sensing, signal processing, and inverse problems, the core of computational imaging, remains largely unexplored. 
+                </p>
+                <p>
+                    In this paper, we present <strong>CIBench</strong>, the first systematic benchmark of latest VLMs and agentic AIs on a diverse set of computational imaging tasks, including inverse image reconstruction, camera parameter inference, and forward formation model reasoning. We evaluate leading proprietary and open-source agentic AI pipelines under both single-shot prompting (P1) and planner-guided prompting (P2), measuring image quality, physical plausibility, and sensitivity to noise and sampling. 
+                </p>
+                <p>
+                    Our benchmark reveals a clear performance gap between high-level visual reasoning and low-level imaging understanding: while AI excel at semantic interpretation, they are behind specialized non-agentic models on tasks requiring explicit physical reasoning and algorithmic insight. CIBench provides a unified testbed for measuring this gap and for tracking progress in agentic AI for computational imaging.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-10 text-center">Benchmark at a glance</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="stats-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section id="leaderboard" class="py-16 bg-gray-900/50 border-t border-gray-800">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
+                <div class="max-w-4xl">
+                    <h2 class="text-3xl font-bold mb-4">Model Leaderboard</h2>
+                    <p class="text-gray-400 font-semibold mb-2">Ranked by Unified Score. Higher is better.</p>
+                </div>
+                <a href="#" class="text-sm px-4 py-2 bg-brand-600/20 text-brand-400 border border-brand-500/30 rounded-lg hover:bg-brand-600/30 transition-colors whitespace-nowrap self-start md:self-auto">
+                    Submission Portal (Coming Soon)
+                </a>
+            </div>
+            
+            <div class="overflow-x-auto rounded-xl border border-gray-800 glass shadow-xl">
+                <table class="w-full text-left text-sm whitespace-nowrap">
+                    <thead class="text-xs text-gray-400 uppercase bg-gray-900/80 border-b border-gray-800">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 font-semibold text-center">Protocol</th>
+                            <th scope="col" class="px-6 py-4 font-semibold">Model</th>
+                            <th scope="col" class="px-6 py-4 font-semibold">Planner</th>
+                            <th scope="col" class="px-6 py-4 font-semibold">Type</th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right cursor-pointer group hover:text-gray-300 transition-colors" onclick="sortLeaderboard('Unified')">
+                                Unified <span class="text-gray-600 group-hover:text-gray-400">↕</span>
+                            </th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right text-gray-500 cursor-pointer group hover:text-gray-300 transition-colors" onclick="sortLeaderboard('Ray/Wave Optics')" title="CGH, Lens Design">
+                                Ray/Wave <span class="text-gray-600 group-hover:text-gray-400 opacity-50">↕</span>
+                            </th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right text-gray-500 cursor-pointer group hover:text-gray-300 transition-colors" onclick="sortLeaderboard('Calibration')" title="Lens Distortion">
+                                Calibration <span class="text-gray-600 group-hover:text-gray-400 opacity-50">↕</span>
+                            </th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right text-gray-500 cursor-pointer group hover:text-gray-300 transition-colors" onclick="sortLeaderboard('Computational Sensing')" title="ToF, Lensless, Event, Lightfield">
+                                Sensing <span class="text-gray-600 group-hover:text-gray-400 opacity-50">↕</span>
+                            </th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right text-gray-500 cursor-pointer group hover:text-gray-300 transition-colors" onclick="sortLeaderboard('Image Signal Processing')" title="Demosaicking, HDR, WB, Denoising">
+                                ISP <span class="text-gray-600 group-hover:text-gray-400 opacity-50">↕</span>
+                            </th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right text-gray-500 cursor-pointer group hover:text-gray-300 transition-colors" onclick="sortLeaderboard('Inverse Reconstruction')" title="CS, Aberration, Super-res, Inpainting, Deblur">
+                                Inv Recon <span class="text-gray-600 group-hover:text-gray-400 opacity-50">↕</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body" class="divide-y divide-gray-800/50">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8 max-w-4xl">
+                <ul class="text-gray-400 text-sm space-y-2 mb-4 list-disc list-inside">
+                    <li><strong>P1: Base execution.</strong> Expert-guided inverse reconstruction using a fixed, domain-informed prompt.</li>
+                    <li><strong>P2: Planner-guided execution.</strong> Adaptive inverse solution where a frontier agentic AI planner generates an image-specific restoration instruction for the executor.</li>
+                    <li><strong>P3: Forward system simulation.</strong> Probes forward-inverse consistency by evaluating whether the model can accurately synthesize physical degradations from a clean image.</li>
+                </ul>
+                <p class="text-gray-500 text-xs italic mb-2">Unified Score = 0.3&times;norm(PSNR) + 0.3&times;norm(SSIM) + 0.3&times;norm(LPIPS) + 0.1&times;norm(NIQE). <br/>* Note: This weighting scheme is subject to change and the underlying metrics may be updated.</p>
+                <p class="text-gray-500 text-xs italic">* Note: Camera calibration scoring is temporarily excluded due to evaluation issues. The Calibration score currently reflects only Lens Distortion Correction results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparisons -->
+    <section id="samples" class="py-20 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-4 text-center">See the benchmark in action</h2>
+        <p class="text-gray-400 text-center mb-1 max-w-2xl mx-auto">Real editing prompts, real model outputs. Each row shows the original input alongside predictions from different models.</p>
+        <p class="text-gray-500 text-xs italic text-center mb-12">* Note: Images shown are compressed to WebP for faster loading in the web interface.</p>
+        
+        <div id="samples-container" class="space-y-16">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Findings -->
+    <section id="findings" class="py-16 bg-gray-900 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8">What we found</h2>
+            
+            <div class="grid gap-8">
+                <div class="glass p-6 rounded-2xl border border-gray-800">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Visual Quality ≠ Physical Fidelity</h3>
+                    <p class="text-gray-400">While agentic models often generate visually plausible and aesthetically pleasing outputs (high NIQE), their reference-based fidelity (PSNR/SSIM) remains poor. Producing visually plausible edits is far easier than faithfully following the underlying physics of inverse reconstruction.</p>
+                </div>
+                
+                <div class="glass p-6 rounded-2xl border border-gray-800">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Struggles with Computational Sensing</h3>
+                    <p class="text-gray-400">Agentic models are consistently weaker than specialized methods, especially on computational sensing problems such as lensless imaging, event-based reconstruction, time-of-flight imaging, and holography.</p>
+                </div>
+                
+                <div class="glass p-6 rounded-2xl border border-gray-800">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Planner Guidance Offers Limited Gains</h3>
+                    <p class="text-gray-400">Incorporating frontier multimodal reasoning models (e.g., GPT-5, Gemini 3.1 Pro) as planners (P2) provides only modest and inconsistent gains over the fixed-prompt single-shot baseline (P1).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation -->
+    <section id="citation" class="py-20 max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6">Citation</h2>
+        <p class="text-gray-400">The preprint is currently under preparation. Citation information will be provided once published on arXiv.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm border-t border-gray-800 bg-gray-950">
+        <p>CIBench · <a href="https://hgchen.com/cirp-lab/" class="hover:text-gray-300 underline" target="_blank">CIRP Lab</a>, University of Hawaii at Manoa · <a href="https://www.glass-imaging.com/" class="hover:text-gray-300 underline" target="_blank">Glass Imaging</a> · University of North Carolina at Charlotte</p>
+        <p class="mt-2 text-xs">This page structure was inspired by <a href="https://xiangbogaobarry.github.io/VEFX-Bench/" class="text-brand-500 hover:underline">VEFX-Bench</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" class="text-brand-500 hover:underline">Academic Project Page Template</a>.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

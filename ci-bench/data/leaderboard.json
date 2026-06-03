@@ -1,0 +1,110 @@
+[
+  {
+    "Protocol": "P1",
+    "Model": "Gemini 3.1 Flash Image Preview",
+    "Planner": "N/A",
+    "Type": "Commercial",
+    "Unified": 49.96,
+    "Ray/Wave Optics": 11.5,
+    "Calibration": 57.6,
+    "Computational Sensing": 34.07,
+    "Image Signal Processing": 57.82,
+    "Inverse Reconstruction": 57.86
+  },
+  {
+    "Protocol": "P1",
+    "Model": "GPT-Image-1.5",
+    "Planner": "N/A",
+    "Type": "Commercial",
+    "Unified": 35.01,
+    "Ray/Wave Optics": 20.6,
+    "Calibration": 31.88,
+    "Computational Sensing": 29.69,
+    "Image Signal Processing": 37.98,
+    "Inverse Reconstruction": 38.34
+  },
+  {
+    "Protocol": "P1",
+    "Model": "Qwen-Image-Edit-2511",
+    "Planner": "N/A",
+    "Type": "Open-source",
+    "Unified": 38.51,
+    "Ray/Wave Optics": 41.76,
+    "Calibration": 41.46,
+    "Computational Sensing": 32.79,
+    "Image Signal Processing": 36.94,
+    "Inverse Reconstruction": 43.29
+  },
+  {
+    "Protocol": "P2",
+    "Model": "Gemini 3.1 Flash Image Preview",
+    "Planner": "Gemini 3.1 Pro Preview",
+    "Type": "Commercial",
+    "Unified": 49.23,
+    "Ray/Wave Optics": 9.9,
+    "Calibration": 57.54,
+    "Computational Sensing": 35.13,
+    "Image Signal Processing": 56.91,
+    "Inverse Reconstruction": 57.16
+  },
+  {
+    "Protocol": "P2",
+    "Model": "GPT-Image-1.5",
+    "Planner": "GPT-5",
+    "Type": "Commercial",
+    "Unified": 33.8,
+    "Ray/Wave Optics": 17.41,
+    "Calibration": 32.44,
+    "Computational Sensing": 28.57,
+    "Image Signal Processing": 37.37,
+    "Inverse Reconstruction": 37.01
+  },
+  {
+    "Protocol": "P2",
+    "Model": "Qwen-Image-Edit-2511",
+    "Planner": "Qwen3.5-35B-A3B",
+    "Type": "Open-source",
+    "Unified": 39.15,
+    "Ray/Wave Optics": 42.52,
+    "Calibration": 47.67,
+    "Computational Sensing": 35.57,
+    "Image Signal Processing": 36.3,
+    "Inverse Reconstruction": 42.45
+  },
+  {
+    "Protocol": "P3",
+    "Model": "Gemini 3.1 Flash Image Preview",
+    "Planner": "Gemini 3.1 Pro Preview",
+    "Type": "Commercial",
+    "Unified": 27.92,
+    "Ray/Wave Optics": 16.1,
+    "Calibration": 0.0,
+    "Computational Sensing": 14.55,
+    "Image Signal Processing": 45.28,
+    "Inverse Reconstruction": 18.42
+  },
+  {
+    "Protocol": "P3",
+    "Model": "GPT-Image-1.5",
+    "Planner": "GPT-5",
+    "Type": "Commercial",
+    "Unified": 23.25,
+    "Ray/Wave Optics": 13.46,
+    "Calibration": 0.0,
+    "Computational Sensing": 22.56,
+    "Image Signal Processing": 33.55,
+    "Inverse Reconstruction": 13.13
+  },
+  {
+    "Protocol": "P3",
+    "Model": "Qwen-Image-Edit-2511",
+    "Planner": "Qwen3.5-35B-A3B",
+    "Type": "Open-source",
+    "Unified": 25.36,
+    "Ray/Wave Optics": 20.47,
+    "Calibration": 0.0,
+    "Computational Sensing": 19.61,
+    "Image Signal Processing": 34.3,
+    "Inverse Reconstruction": 18.11
+  }
+]
