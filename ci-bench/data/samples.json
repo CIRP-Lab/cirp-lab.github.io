@@ -4,38 +4,38 @@
     "label": "GOPR0857_11_00__000043",
     "protocols": {
       "P1": {
-        "gt_url": "assets/samples/deconv_motion_blur_gt_GOPR0857_11_00__000043.png",
-        "input_url": "assets/samples/deconv_motion_blur_input_GOPR0857_11_00__000043.png",
+        "gt_url": "assets/samples/deconv_motion_blur_gt_GOPR0857_11_00__000043.webp",
+        "input_url": "assets/samples/deconv_motion_blur_input_GOPR0857_11_00__000043.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/deconv_motion_blur_P1_gemini_GOPR0857_11_00__000043_nanobanana_0.png",
+            "url": "assets/samples/deconv_motion_blur_P1_gemini_GOPR0857_11_00__000043_nanobanana_0.webp",
             "score": 60.63
           },
           "openai": {
-            "url": "assets/samples/deconv_motion_blur_P1_openai_GOPR0857_11_00__000043_openai_0.png",
+            "url": "assets/samples/deconv_motion_blur_P1_openai_GOPR0857_11_00__000043_openai_0.webp",
             "score": 30.84
           },
           "qwen": {
-            "url": "assets/samples/deconv_motion_blur_P1_qwen_GOPR0857_11_00__000043.png",
+            "url": "assets/samples/deconv_motion_blur_P1_qwen_GOPR0857_11_00__000043.webp",
             "score": 43.99
           }
         },
         "prompt": "Task: Remove the motion blur from this image. Deconvolve the blur kernel introduced by camera or subject motion to recover a sharp, clear image.\nInput: An image with camera or object motion blur.\n\nConstraints:\n- Directional Deblurring: Accurately invert the directional smearing caused by the motion trajectory. Restore crisp edges and fine details that were smeared along the axis of movement.\n- Artifact Suppression: Avoid introducing ringing artifacts, haloing, or artificial noise amplification, which are common errors when aggressively deconvolving motion blur.\n- Spatial Consistency: Differentiate between global camera shake (affecting the entire frame) and localized subject motion (affecting only specific objects). Ensure static background elements remain natural and untouched if only the subject is blurred.\n- Zero Hallucination: Do not invent or hallucinate high-frequency textures (like text, facial features, or intricate patterns) that were completely destroyed by the motion smear. Only restore mathematically recoverable structures.\n\nOutput: A sharp, well-focused, and artifact-free image where the original motion smear has been completely neutralized."
       },
       "P2": {
-        "gt_url": "assets/samples/deconv_motion_blur_gt_GOPR0857_11_00__000043.png",
-        "input_url": "assets/samples/deconv_motion_blur_input_GOPR0857_11_00__000043.png",
+        "gt_url": "assets/samples/deconv_motion_blur_gt_GOPR0857_11_00__000043.webp",
+        "input_url": "assets/samples/deconv_motion_blur_input_GOPR0857_11_00__000043.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/deconv_motion_blur_P2_gemini_GOPR0857_11_00__000043_nanobanana_0.png",
+            "url": "assets/samples/deconv_motion_blur_P2_gemini_GOPR0857_11_00__000043_nanobanana_0.webp",
             "score": 58.74
           },
           "openai": {
-            "url": "assets/samples/deconv_motion_blur_P2_openai_GOPR0857_11_00__000043_openai_0.png",
+            "url": "assets/samples/deconv_motion_blur_P2_openai_GOPR0857_11_00__000043_openai_0.webp",
             "score": 33.43
           },
           "qwen": {
-            "url": "assets/samples/deconv_motion_blur_P2_qwen_GOPR0857_11_00__000043.png",
+            "url": "assets/samples/deconv_motion_blur_P2_qwen_GOPR0857_11_00__000043.webp",
             "score": 42.09
           }
         },
@@ -53,38 +53,38 @@
     "label": "a5000-kme_0204",
     "protocols": {
       "P1": {
-        "gt_url": "assets/samples/demosaicking_regular_gt_a5000-kme_0204.jpg",
-        "input_url": "assets/samples/demosaicking_regular_input_a5000-kme_0204.png",
+        "gt_url": "assets/samples/demosaicking_regular_gt_a5000-kme_0204.webp",
+        "input_url": "assets/samples/demosaicking_regular_input_a5000-kme_0204.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/demosaicking_regular_P1_gemini_a5000-kme_0204_nanobanana_0.png",
+            "url": "assets/samples/demosaicking_regular_P1_gemini_a5000-kme_0204_nanobanana_0.webp",
             "score": 56.29
           },
           "openai": {
-            "url": "assets/samples/demosaicking_regular_P1_openai_a5000-kme_0204_openai_0.png",
+            "url": "assets/samples/demosaicking_regular_P1_openai_a5000-kme_0204_openai_0.webp",
             "score": 36.01
           },
           "qwen": {
-            "url": "assets/samples/demosaicking_regular_P1_qwen_a5000-kme_0204.png",
+            "url": "assets/samples/demosaicking_regular_P1_qwen_a5000-kme_0204.webp",
             "score": 19.86
           }
         },
         "prompt": "Task: Demosaic this regular RGGB Bayer pattern image. Reconstruct the full-color RGB image from the raw sensor mosaic.\nInput: A regular Bayer mosaic image.\n\nSensor Layout: The repeating 2x2 Bayer tile is:\n\n  R G\n  G B\n\nConstraints:\n- Color fidelity: Reconstruct missing channels while preserving natural color relationships and avoiding false-color artifacts.\n- Edge-aware interpolation: Keep high-contrast edges sharp and suppress zippering or moire artifacts on fine repetitive textures.\n- Detail preservation: Recover fine spatial detail without excessive smoothing or synthetic over-sharpening.\n- Zero hallucination: Do not invent structures or textures not supported by the sampled mosaic.\n\nOutput: A clean, full-color RGB image faithfully reconstructed from the regular RGGB Bayer input."
       },
       "P2": {
-        "gt_url": "assets/samples/demosaicking_regular_gt_a5000-kme_0204.jpg",
-        "input_url": "assets/samples/demosaicking_regular_input_a5000-kme_0204.png",
+        "gt_url": "assets/samples/demosaicking_regular_gt_a5000-kme_0204.webp",
+        "input_url": "assets/samples/demosaicking_regular_input_a5000-kme_0204.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/demosaicking_regular_P2_gemini_a5000-kme_0204_nanobanana_0.png",
+            "url": "assets/samples/demosaicking_regular_P2_gemini_a5000-kme_0204_nanobanana_0.webp",
             "score": 56.45
           },
           "openai": {
-            "url": "assets/samples/demosaicking_regular_P2_openai_a5000-kme_0204_openai_0.png",
+            "url": "assets/samples/demosaicking_regular_P2_openai_a5000-kme_0204_openai_0.webp",
             "score": 38.58
           },
           "qwen": {
-            "url": "assets/samples/demosaicking_regular_P2_qwen_a5000-kme_0204.png",
+            "url": "assets/samples/demosaicking_regular_P2_qwen_a5000-kme_0204.webp",
             "score": 21.34
           }
         },
@@ -102,38 +102,38 @@
     "label": "10_32",
     "protocols": {
       "P1": {
-        "gt_url": "assets/samples/event_gt_10_32.png",
-        "input_url": "assets/samples/event_input_10_32.png",
+        "gt_url": "assets/samples/event_gt_10_32.webp",
+        "input_url": "assets/samples/event_input_10_32.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/event_P1_gemini_10_32_nanobanana_0.png",
+            "url": "assets/samples/event_P1_gemini_10_32_nanobanana_0.webp",
             "score": 27.36
           },
           "openai": {
-            "url": "assets/samples/event_P1_openai_10_32_openai_0.png",
+            "url": "assets/samples/event_P1_openai_10_32_openai_0.webp",
             "score": 22.87
           },
           "qwen": {
-            "url": "assets/samples/event_P1_qwen_10_32.png",
+            "url": "assets/samples/event_P1_qwen_10_32.webp",
             "score": 6.17
           }
         },
         "prompt": "Task: Reconstruct an intensity image from a single event representation.\nInput: One event image `10_32.png`, whose filename suffix indicates temporal accumulation scale (`*_16.png`, `*_32.png`, or `*_full.png`).\nSuffix interpretation: `_16` = short accumulation window, `_32` = medium accumulation window, `_full` = full accumulation window.\nFor this sample, use accumulation scale `32`.\n\nEvent encoding note:\n- The event image is accumulated from events `(x, y, t, p)` over the selected window.\n- Polarity `p=1` (ON) means local brightness increased; `p=0` (OFF) means local brightness decreased.\n- Per pixel, ON contributes `+1` and OFF contributes `-1`, then values are rendered around a neutral gray baseline `128`.\n- Pixels above `128` indicate ON-dominant activity; pixels below `128` indicate OFF-dominant activity.\n- This input encodes brightness change dynamics, not absolute scene intensity.\n\nConstraints:\n- Scale awareness: Respect the input accumulation scale (16, 32, or full) and reconstruct the corresponding intensity frame for that same scale.\n- Edge and texture fidelity: Preserve fine contours and high-frequency details while suppressing event noise and sparsity artifacts.\n- Photometric plausibility: Produce a natural-looking intensity image without artificial over-sharpening, checkerboard artifacts, or contrast exaggeration.\n- Zero hallucination: Do not invent objects or scene structures not supported by the provided event input.\n\nOutput: A clean, structurally accurate intensity image reconstructed from the provided event input."
       },
       "P2": {
-        "gt_url": "assets/samples/event_gt_10_32.png",
-        "input_url": "assets/samples/event_input_10_32.png",
+        "gt_url": "assets/samples/event_gt_10_32.webp",
+        "input_url": "assets/samples/event_input_10_32.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/event_P2_gemini_10_32_nanobanana_0.png",
+            "url": "assets/samples/event_P2_gemini_10_32_nanobanana_0.webp",
             "score": 18.84
           },
           "openai": {
-            "url": "assets/samples/event_P2_openai_10_32_openai_0.png",
+            "url": "assets/samples/event_P2_openai_10_32_openai_0.webp",
             "score": 6.95
           },
           "qwen": {
-            "url": "assets/samples/event_P2_qwen_10_32.png",
+            "url": "assets/samples/event_P2_qwen_10_32.webp",
             "score": 3.81
           }
         },
@@ -151,19 +151,19 @@
     "label": "0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00",
     "protocols": {
       "P3": {
-        "gt_url": "assets/samples/denoising_gt_0068_003_IP_00200_00400_3200_N__NOISY_SRGB_010__crop00.PNG",
-        "input_url": "assets/samples/denoising_input_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00.PNG",
+        "gt_url": "assets/samples/denoising_gt_0068_003_IP_00200_00400_3200_N__NOISY_SRGB_010__crop00.webp",
+        "input_url": "assets/samples/denoising_input_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00.webp",
         "models": {
           "gemini": {
-            "url": "assets/samples/denoising_P3_gemini_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00_nanobanana_0.png",
+            "url": "assets/samples/denoising_P3_gemini_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00_nanobanana_0.webp",
             "score": 50.99
           },
           "openai": {
-            "url": "assets/samples/denoising_P3_openai_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00_openai_0.png",
+            "url": "assets/samples/denoising_P3_openai_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00_openai_0.webp",
             "score": 35.07
           },
           "qwen": {
-            "url": "assets/samples/denoising_P3_qwen_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00.png",
+            "url": "assets/samples/denoising_P3_qwen_0068_003_IP_00200_00400_3200_N__GT_SRGB_010__crop00.webp",
             "score": 42.57
           }
         },
